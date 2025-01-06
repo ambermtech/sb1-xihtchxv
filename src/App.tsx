@@ -7,32 +7,46 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Footer from './components/Footer';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import ProjectFormPage from './pages/admin/ProjectFormPage';
 
-function App() {
+export default function App() {
   useEffect(() => {
-    // Add smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
   }, []);
 
   return (
     <Router>
       <div className="min-h-screen bg-[#0a0a0a] relative">
-        <Navigation />
         <Routes>
-          <Route path="/" element={
-            <main className="container mx-auto pt-20 px-4">
-              <AboutSection />
-              <ProjectCarousel />
-            </main>
-          } />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
+          {/* Admin routes */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/projects/new" element={<ProjectFormPage />} />
+          <Route path="/admin/projects/:id/edit" element={<ProjectFormPage />} />
+          
+          {/* Public routes */}
+          <Route
+            path="/*"
+            element={
+              <>
+                <Navigation />
+                <Routes>
+                  <Route path="/" element={
+                    <main className="container mx-auto pt-20 px-4">
+                      <AboutSection />
+                      <ProjectCarousel />
+                    </main>
+                  } />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/contact" element={<Contact />} />
+                </Routes>
+                <Footer />
+              </>
+            }
+          />
         </Routes>
-        <Footer />
       </div>
     </Router>
   );
 }
-
-export default App;
