@@ -4,6 +4,7 @@ import Navigation from './components/Navigation';
 import AboutSection from './components/AboutSection';
 import ProjectCarousel from './components/ProjectCarousel';
 import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Footer from './components/Footer';
@@ -39,6 +40,7 @@ export default function App() {
                   } />
                   <Route path="/about" element={<About />} />
                   <Route path="/projects" element={<Projects />} />
+                  <Route path="/projects/:id" element={<ProjectDetail />} />
                   <Route path="/contact" element={<Contact />} />
                 </Routes>
                 <Footer />
